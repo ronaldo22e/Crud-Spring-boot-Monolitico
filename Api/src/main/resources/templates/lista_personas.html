@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Personas</title>
+    <!-- Agrega los enlaces a los archivos CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Lista de Personas</h1>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Género</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterar sobre la lista de personas y mostrar sus detalles en la tabla -->
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.id}"></td>
+                    <td th:text="${persona.nombre}"></td>
+                    <td th:text="${persona.genero}"></td>
+                    <td th:text="${persona.descripcion}"></td>
+                    <td>
+                        <!-- Enlaces para editar y eliminar personas con botones de Bootstrap -->
+                        <a class="btn btn-primary" th:href="@{/Api/personas/editar/{id}(id=${persona.id})}">Editar</a>
+                        <a class="btn btn-danger" th:href="@{/Api/personas/eliminar/{id}(id=${persona.id})}">Eliminar</a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Enlace para crear una nueva persona con botón de Bootstrap -->
+        <a class="btn btn-success" th:href="@{/Api/personas/nuevo}">Crear Nueva Persona</a>
+    </div>
+
+    <!-- Agrega los scripts de Bootstrap al final del archivo para una mejor carga -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

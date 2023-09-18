@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Persona</title>
+</head>
+<body>
+    <h1>Formulario de Persona</h1>
+    <form th:object="${persona}" th:action="${persona.id == null ? '/Api/personas/guardar' : '/Api/personas/actualizar/' + persona.id}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" />
+        <br/>
+        <label for="genero">Género:</label>
+        <input type="text" id="genero" th:field="*{genero}" />
+        <br/>
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" th:field="*{descripcion}" />
+        <br/>
+        <input type="submit" value="Guardar" />
+    </form>
+    <a th:href="@{/Api/personas/listar}">Volver a la lista</a>
+</body>
+</html>
